@@ -20,4 +20,4 @@
 - [ ] user router
 - [ ] auth controller
 - [ ] auth router
-- [ ] error controller
+- [x] error controller
