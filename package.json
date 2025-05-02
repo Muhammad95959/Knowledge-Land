@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "tsx watch --env-file=.env src/server.ts",
+    "start-prod": "export NODE_ENV=production && tsx watch --env-file=.env src/server.ts"
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^8.14.1",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/hpp": "^0.2.6",
+    "@types/node": "^22.15.3"
+  }
+}
