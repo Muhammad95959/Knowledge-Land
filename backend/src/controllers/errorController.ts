@@ -11,10 +11,17 @@ function devError(error: ICustomError, res: Response) {
 }
 
 function prodError(error: ICustomError, res: Response) {
-  res.status(error.statusCode).json({
-    status: error.status,
-    message: error.message,
-  });
+  if (error.isOperational) {
+    res.status(error.statusCode).json({
+      status: error.status,
+      message: error.message,
+    });
+  } else {
+    res.status(500).json({
+      status: "error",
+      message: "something went wrong! please try again later.",
+    });
+  }
 }
 
 export default function globalErrorHandler(

@@ -2,7 +2,7 @@ import "./utils/uncaughtExceptionHandler";
 import mongoose from "mongoose";
 import app from "./app";
 
-if (!process.env.MONGODB_URL) throw Error("MONGODB_URL environment variable isn't set");
+if (!process.env.MONGODB_URL) throw new Error("MONGODB_URL environment variable isn't set.");
 
 mongoose
   .connect(process.env.MONGODB_URL)
