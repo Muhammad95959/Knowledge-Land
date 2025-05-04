@@ -24,6 +24,8 @@ function prodError(error: ICustomError, res: Response) {
   }
 }
 
+// TODO: handle more errors for production usage here
+
 export default function globalErrorHandler(
   error: ICustomError,
   _req: Request,
