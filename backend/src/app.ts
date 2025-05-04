@@ -5,6 +5,7 @@ import hpp from "hpp";
 import globalErrorHandler from "./controllers/errorController";
 import CustomError from "./utils/CustomError";
 import authRouter from "./routes/authRouter";
+import questionsRouter from "./routes/questionsRouter";
 
 const app = express();
 app.use(helmet());
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(sanitize());
 app.use(hpp());
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/questions", questionsRouter);
 app.all("*", routesErrorsHandler);
 app.use(globalErrorHandler);
 
