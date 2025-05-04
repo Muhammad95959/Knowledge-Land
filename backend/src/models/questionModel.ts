@@ -37,6 +37,10 @@ const schema = new mongoose.Schema({
       message: "the provided correct answer isn't one of the choices.",
     },
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const Question = mongoose.model("Question", schema);

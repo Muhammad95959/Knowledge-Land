@@ -30,6 +30,10 @@ const schema = new mongoose.Schema({
     default: true,
     select: false,
   },
+  passwordChangedAt: {
+    type: Date,
+    default: Date.now()
+  },
 });
 
 schema.pre("save", async function (this: UserDocument, next) {
@@ -42,6 +46,11 @@ schema.pre("save", async function (this: UserDocument, next) {
 
 schema.methods.checkPassword = async function (pass: string, dbPass: string) {
   return await bcrypt.compare(pass, dbPass);
+};
+
+schema.methods.isPasswordChanged = function (this: UserDocument, loginTimestamp: number) {
+  const passwordChangedAtTimestamp = parseInt((this.passwordChangedAt.getTime() / 1000).toString());
+  return passwordChangedAtTimestamp > loginTimestamp;
 };
 
 const User = mongoose.model("User", schema);
