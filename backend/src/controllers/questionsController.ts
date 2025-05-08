@@ -3,13 +3,19 @@ import asyncErrorHandler from "../utils/asyncErrorHandler";
 import Question from "../models/questionModel";
 import ICustomRequest from "../interfaces/ICustomRequest";
 import CustomError from "../utils/CustomError";
+import ApiFeatures from "../utils/ApiFeatures";
 
 export const getAllQuestions = asyncErrorHandler(async function (
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ) {
-  const questions = await Question.find().sort("collectionName owner");
+  const features = await new ApiFeatures(Question.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+  const questions = await features.query;
   res.status(200).json({
     status: "success",
     count: questions.length,
